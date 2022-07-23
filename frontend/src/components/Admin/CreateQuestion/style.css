@@ -1,0 +1,19 @@
+#create-question {
+  text-align: center;
+  background-color: #006a7a;
+  height: 900px;
+}
+#create-question .container-outside {
+  padding-top: 20px;
+  color: white;
+}
+#create-question .container-outside .card-title {
+  font-size: 20px;
+}
+#create-question .container-outside .form-area {
+  height: 300px;
+}
+#create-question .container-outside .button {
+  width: 1350px;
+  height: 50px;
+}

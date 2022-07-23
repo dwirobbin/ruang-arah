@@ -1,0 +1,50 @@
+#OurTeams-page {
+  background-color: #006a7a;
+}
+
+#OurTeams-page .container {
+  padding-top: 50px;
+  height: 950px;
+}
+
+#OurTeams-page .container h1 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 50px;
+}
+
+#OurTeams-page .container h1 span {
+  color: #fbcb49;
+}
+
+#OurTeams-page .container .main-content {
+  padding-top: 50px;
+}
+
+#OurTeams-page .container .main-content .profile-detail {
+  border-radius: 20px;
+}
+
+#OurTeams-page .container .main-content .profile-detail .avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+}
+
+#OurTeams-page .container .main-content .profile-detail .name {
+  font-size: 24px;
+}
+
+#OurTeams-page .container .main-content .profile-detail .name span {
+  font-size: 18px;
+}
+
+#OurTeams-page .container .main-content .profile-detail .name span .color {
+  color: #fbcb49;
+}
+
+#OurTeams-page .container .main-content span {
+  font-weight: 400;
+  font-size: 20px;
+}
+/*# sourceMappingURL=OurTeams.css.map */

@@ -1,0 +1,98 @@
+#question-page {
+  background-color: #006a7a;
+}
+
+#question-page .container {
+  padding-top: 50px;
+  height: 850px;
+}
+
+#question-page .container h1 {
+  color: white;
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+#question-page .container .card {
+  border-radius: 30px;
+  padding-bottom: 30px;
+}
+
+#question-page .container .card .card-title {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#question-page .container .card .card-text {
+  margin: 5px 30px 20px 30px;
+}
+
+#question-page .container .card .card-text p {
+  font-size: 18px;
+}
+
+#question-page .container .card button {
+  width: 800px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+}
+
+.singleQuestion {
+  width: 95%;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 5px solid grey;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.quizInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  /* align-items: center; */
+}
+
+.singleOption {
+  width: 100%;
+  height: 50px;
+  padding: 15px 20px;
+  margin: 10px;
+  box-shadow: 0 0 2px black;
+}
+
+.select {
+  background-color: rgb(7, 207, 0);
+  color: white;
+  box-shadow: 0 0 1px black;
+}
+
+.wrong {
+  background-color: rgb(233, 0, 0);
+  color: white;
+  box-shadow: 0 0 1px black;
+}
+
+.select {
+  background-color: rgb(7, 207, 0);
+  color: white;
+  box-shadow: 0 0 1px black;
+}
+
+.wrong {
+  background-color: rgb(233, 0, 0);
+  color: white;
+  box-shadow: 0 0 1px black;
+}

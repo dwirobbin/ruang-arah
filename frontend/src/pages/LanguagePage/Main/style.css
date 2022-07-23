@@ -1,0 +1,39 @@
+#language-page {
+  background-color: #006a7a;
+}
+
+#language-page .container {
+  padding-top: 50px;
+  height: 1000px;
+}
+
+#language-page .container span {
+  color: #fbcb49;
+}
+
+#language-page .container .card-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  z-index: 0;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+#language-page .container h1 {
+  text-align: center;
+  color: white;
+  padding-bottom: 50px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 75px;
+}
+/*# sourceMappingURL=language.css.map */

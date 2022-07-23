@@ -1,0 +1,11 @@
+export { default as LandingPage } from "./LandingPage/Landing";
+export { default as RegisterPage } from "./RegisterPage/Register";
+export { default as LoginPage } from "./LoginPage/Login";
+export { default as HomePage } from "./HomePage/Home";
+export { default as LanguagePage } from "./LanguagePage/Language";
+export { default as QuizPage } from "./QuizPage/Quiz";
+export { default as ResultPage } from "./ResultPage/Result";
+export { default as RecommendationPage } from "./RecommendationPage/Recommendation";
+export { default as DashboardPage } from "./AdminPage/Dashboard";
+export { default as CreateQuestionPage } from "./AdminPage/Create";
+export { default as UpdateQuestionPage } from "./AdminPage/Update";

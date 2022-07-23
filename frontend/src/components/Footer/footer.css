@@ -1,0 +1,26 @@
+#footer {
+  background-color: #006a7a;
+}
+
+#footer .main-content {
+  height: auto;
+}
+
+#footer .double-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+#footer .pages-link {
+  text-decoration: none;
+  color: white;
+}
+
+#footer .copyright h5 {
+  font-size: 16px;
+}
+/*# sourceMappingURL=footer.css.map */

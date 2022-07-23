@@ -1,0 +1,961 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "RuangArah RESTful API",
+    "description": "OpenAPI for RuangArah RESTful API  ",
+    "version": "1.0",
+    "contact": {
+      "name": "Team Engineering 14",
+      "email": "teamengineering14@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": "RuangArah RESTful API Server",
+      "variables": {
+        "environment": {
+          "default": "dev",
+          "description": "Server Environment",
+          "enum": ["dev"]
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": ["Authentication API"],
+        "summary": "Create New User Account",
+        "description": "Create New User Account in Application",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "email": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "phone": {
+                    "type": "string",
+                    "required": true
+                  }
+                }
+              },
+              "example": {
+                "username": "Dwi Robbi",
+                "email": "dwirobbi291@gmail.com",
+                "password": "dwi123",
+                "phone": "082245763298"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Register User Account Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "type": "string",
+                          "description": "Username string",
+                          "nullable": false
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "Email string",
+                          "nullable": false
+                        },
+                        "phone": {
+                          "type": "string",
+                          "description": "Username string",
+                          "nullable": false
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "Role string",
+                          "nullable": false
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": 201,
+                  "message": "CREATE OK",
+                  "data": {
+                    "username": "Dwi Robbi",
+                    "email": "dwirobbi291@gmail.com",
+                    "phone": "082245763298",
+                    "role": "guest"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Authentication API"],
+        "summary": "Login To User Account",
+        "description": "Login User Account to Application",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "required": true
+                  }
+                }
+              },
+              "example": {
+                "email": "dwirobbi291@gmail.com",
+                "password": "dwi123"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login User Account Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "Role string",
+                          "nullable": false
+                        },
+                        "token": {
+                          "type": "string",
+                          "description": "Token string",
+                          "nullable": false
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": 200,
+                  "message": "LOGIN OK",
+                  "data": {
+                    "id": 1,
+                    "username": "Admin",
+                    "role": "admin",
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTU4NzA2NzMsImlhdCI6MTY1NTg2ODg3MywiaXNzIjoidG9kby1hcHAiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsInVzZXJfaWQiOjF9.TnZ4bMDrPcxHeIECJzvWu7oJbZZ-olxJm8as3HMyj78"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/questions": {
+      "get": {
+        "tags": ["Admin Dashboard API"],
+        "summary": "Get All Questions",
+        "description": "Get All Questions Created by Admin",
+        "parameters": [
+          {
+            "name": "token",
+            "description": "Need Token in Cookie",
+            "required": true,
+            "in": "cookie"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Total Questions Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "question": {
+                            "type": "string"
+                          },
+                          "programming_language": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": 200,
+                  "message": "SUCCESS",
+                  "data": [
+                    {
+                      "id": 1,
+                      "question": "Seberapa Pahamnya Anda Tentang Bahasa Pemrograman GO ?",
+                      "programming_language": "Go"
+                    },
+                    {
+                      "id": 2,
+                      "question": "Apakah Anda Sudah Mengerti Cara Menggunakan Framework Spring ?",
+                      "programming_language": "Java"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/questions?question_id={id}": {
+      "get": {
+        "tags": ["Admin Dashboard API"],
+        "summary": "Get Question By ID",
+        "description": "Get Question By ID",
+        "parameters": [
+          {
+            "name": "token",
+            "description": "Need Token in Cookie",
+            "required": true,
+            "in": "cookie"
+          },
+          {
+            "name": "question_id",
+            "description": "Question ID",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Question By ID Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "programming_language": {
+                          "type": "string"
+                        },
+                        "question": {
+                          "type": "string"
+                        },
+                        "correct_answer": {
+                          "type": "string"
+                        },
+                        "incorrect_answers": {
+                          "type": "array"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": 200,
+                  "message": "SUCCESS",
+                  "data": {
+                    "id": 1,
+                    "programming_language": "Go",
+                    "question": "Seberapa Pahamnya Anda Tentang Bahasa Pemrograman GO ?",
+                    "correct_answer": "Sangat Paham",
+                    "incorrect_answers": ["Paham", "Tidak Paham"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/questions/create": {
+      "post": {
+        "tags": ["Admin Dashboard API"],
+        "summary": "Create Question",
+        "description": "Create New Question",
+        "parameters": [
+          {
+            "name": "token",
+            "description": "Need Token in Cookie",
+            "required": true,
+            "in": "cookie"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "programming_language": {
+                    "type": "string"
+                  },
+                  "question": {
+                    "type": "string"
+                  },
+                  "correct_answer": {
+                    "type": "string"
+                  },
+                  "incorrect_one": {
+                    "type": "string"
+                  },
+                  "incorrect_two": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "programming_language": "Go",
+                "question": "Seberapa pahamnya anda tentang bahasa Go ?",
+                "correct_answer": "Sangat Paham",
+                "incorrect_one": "Paham",
+                "incorrect_two": "Tidak Paham"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Create New Question by Admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "programming_language": {
+                          "type": "string",
+                          "description": "Programming Language string",
+                          "nullable": false
+                        },
+                        "question": {
+                          "type": "string",
+                          "description": "Question string",
+                          "nullable": false
+                        },
+                        "correct_answer": {
+                          "type": "string",
+                          "description": "Correct Answer string",
+                          "nullable": false
+                        },
+                        "incorrect_answers": {
+                          "type": "array",
+                          "description": "Incorrect Answers array",
+                          "nullable": false,
+                          "items": {
+                            "type": "string",
+                            "description": "Incorrect Answers string",
+                            "nullable": false
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": 201,
+                  "message": "CREATE OK",
+                  "data": {
+                    "programming_language": "Go",
+                    "question": "Seberapa pahamnya anda tentang bahasa Go ?",
+                    "correct_answer": "Sangat Paham",
+                    "incorrect_answers": ["Paham", "Tidak Paham"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/questions/update?question_id={id}": {
+      "put": {
+        "tags": ["Admin Dashboard API"],
+        "summary": "Update Question",
+        "description": "Update Question by Question Id",
+        "parameters": [
+          {
+            "name": "token",
+            "description": "Need Token in Cookie",
+            "required": true,
+            "in": "cookie"
+          },
+          {
+            "name": "question_id",
+            "description": "Include Question Id",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "programming_languange": {
+                    "type": "string"
+                  },
+                  "question": {
+                    "type": "string"
+                  },
+                  "correct_answer": {
+                    "type": "string"
+                  },
+                  "incorrect_one": {
+                    "type": "string"
+                  },
+                  "incorrect_two": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "programming_languange": "Java",
+                "question": "Seberapa pahamnya anda tentang bahasa Java ?",
+                "correct_answer": "Sangat Paham",
+                "incorrect_one": "Paham",
+                "incorrect_two": "Tidak Paham"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update Question by Question Id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "programming_language": {
+                          "type": "string",
+                          "description": "Programming Language string",
+                          "nullable": false
+                        },
+                        "question": {
+                          "type": "string",
+                          "description": "Question string",
+                          "nullable": false
+                        },
+                        "correct_answer": {
+                          "type": "string",
+                          "description": "Correct Answer string",
+                          "nullable": false
+                        },
+                        "incorrect_answers": {
+                          "type": "array",
+                          "description": "Incorrect Answers array",
+                          "nullable": false,
+                          "items": {
+                            "type": "string",
+                            "description": "Incorrect Answers string",
+                            "nullable": false
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": 200,
+                  "message": "UPDATE OK",
+                  "data": {
+                    "programming_language": "Java",
+                    "question": "Seberapa pahamnya anda tentang bahasa Java ?",
+                    "correct_answer": "Sangat Paham",
+                    "incorrect_answers": ["Paham", "Tidak Paham"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/questions/delete?question_id={id}": {
+      "delete": {
+        "tags": ["Admin Dashboard API"],
+        "summary": "Delete Question",
+        "description": "Delete Question by Question Id",
+        "parameters": [
+          {
+            "name": "token",
+            "description": "Need Token in Cookie",
+            "required": true,
+            "in": "cookie"
+          },
+          {
+            "name": "questionId",
+            "description": "Include Question Id",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DELETE Question by Question Id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                },
+                "example": {
+                  "status": 200,
+                  "message": "DELETE OK",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/home/languages": {
+      "get": {
+        "tags": ["Home API"],
+        "summary": "Get All Programming Language",
+        "description": "Get All Programming Language in Home",
+        "parameters": [
+          {
+            "name": "token",
+            "description": "Need Token in Cookie",
+            "required": true,
+            "in": "cookie"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get All Programming Language Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "image_url": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": 200,
+                  "message": "SUCCESS",
+                  "data": [
+                    {
+                      "id": 1,
+                      "name": "Go",
+                      "image_url": "https://www.linkpicture.com/q/go_1.png"
+                    },
+                    {
+                      "id": 2,
+                      "name": "Javascript",
+                      "image_url": "https://www.linkpicture.com/q/js_16.png"
+                    },
+                    {
+                      "id": 3,
+                      "name": "Ruby",
+                      "image_url": "https://www.linkpicture.com/q/ruby_1.png"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/home/questions?programming_language_id={id}&page={page}&limit=1": {
+      "get": {
+        "tags": ["Home API"],
+        "summary": "Get Question with Limit",
+        "description": "Get Question by Programming Languange Id and Limit Per Page",
+        "parameters": [
+          {
+            "name": "token",
+            "description": "Need Token in Cookie",
+            "required": true,
+            "in": "cookie"
+          },
+          {
+            "name": "programming_language_id",
+            "description": "Include Programming Languange Id",
+            "required": true,
+            "in": "query"
+          },
+          {
+            "name": "page",
+            "description": "Include Page",
+            "required": true,
+            "in": "query"
+          },
+          {
+            "name": "limit",
+            "description": "Include Per Page",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Question with Limit Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "question": {
+                            "type": "string"
+                          },
+                          "programming_language": {
+                            "type": "string"
+                          },
+                          "correct_answer": {
+                            "type": "string"
+                          },
+                          "incorrect_answers": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": 200,
+                  "message": "GET OK",
+                  "data": [
+                    {
+                      "id": 1,
+                      "question": "Seberapa paham anda tentang bahasa Java ?",
+                      "programming_language": "Java",
+                      "correct_answer": "Sangat Paham",
+                      "incorrect_answers": ["Paham", "Tidak Paham"]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/home/process-and-result": {
+      "post": {
+        "tags": ["Home API"],
+        "summary": "Process and Result",
+        "description": "Process and Result",
+        "parameters": [
+          {
+            "name": "token",
+            "description": "Need Token in Cookie",
+            "required": true,
+            "in": "cookie"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "answers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "question_id": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "answer": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "example": {
+                "answers": [
+                  {
+                    "question_id": 1,
+                    "answer": "Sangat Paham"
+                  },
+                  {
+                    "question_id": 2,
+                    "answer": "Paham"
+                  },
+                  {
+                    "question_id": 3,
+                    "answer": "Tidak Paham"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Process and Result Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "level_id": {
+                          "type": "integer",
+                          "format": "int32"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "level": {
+                          "type": "string"
+                        },
+                        "score": {
+                          "type": "integer",
+                          "format": "int32"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": 200,
+                  "message": "POST OK",
+                  "data": {
+                    "level_id": 2,
+                    "username": "Mas Sopo",
+                    "level": "Intermediate",
+                    "score": 80
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/home/recommendation?level_id={id}": {
+      "get": {
+        "tags": ["Home API"],
+        "summary": "Recommendation Learning",
+        "description": "Recommendation Learning for User",
+        "parameters": [
+          {
+            "name": "token",
+            "description": "Need Token in Cookie",
+            "required": true,
+            "in": "cookie"
+          },
+          {
+            "name": "level_id",
+            "description": "Include Level Id",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recommendation Learning Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "image_url": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "status": 200,
+                  "message": "GET OK",
+                  "data": {
+                    "image_url": "https://www.linkpicture.com/q/Intermediate.png"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

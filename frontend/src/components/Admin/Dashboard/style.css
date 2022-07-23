@@ -1,0 +1,47 @@
+.update,
+.delete {
+  background-color: #ffcc48;
+  width: 100px;
+  height: 50px;
+  border: 0px;
+  border-radius: 10px;
+}
+
+#dashboard-pages {
+  background-color: #006a7a;
+  height: auto;
+  padding-bottom: 180px;
+}
+#dashboard-pages h1 {
+  text-align: center;
+  color: white;
+  background-color: #006a7a;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 75px;
+}
+#dashboard-pages .card {
+  width: 200px;
+  height: 50px;
+}
+#dashboard-pages .button-create {
+  width: 150px;
+  height: 50px;
+  float: right;
+}
+#dashboard-pages .table {
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  border: 0px;
+}
+#dashboard-pages .table .table-body,
+#dashboard-pages .table tr,
+#dashboard-pages .table td {
+  border: 0px;
+}
+#dashboard-pages .table .table-body .tr-class,
+#dashboard-pages .table tr .tr-class,
+#dashboard-pages .table td .tr-class {
+  border-bottom: 1px solid black;
+} /*# sourceMappingURL=dashboard.css.map */
